@@ -20,14 +20,14 @@ import java.time.LocalDateTime;
 @Setter
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "MEMBER_ID")
-    Long memberId;
+    private Long memberId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    LocalDateTime orderDate;
+    private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    Status status;
+    private Status status;
 }

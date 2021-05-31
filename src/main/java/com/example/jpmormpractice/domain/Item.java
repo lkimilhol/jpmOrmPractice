@@ -14,11 +14,11 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
-    int price;
+    private int price;
 
-    int stockQuantity;
+    private int stockQuantity;
 }

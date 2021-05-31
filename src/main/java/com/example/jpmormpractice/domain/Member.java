@@ -15,8 +15,8 @@ import javax.persistence.Id;
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
-    Long id;
-    String name;
-    String city;
-    String zipCode;
+    private Long id;
+    private String name;
+    private String city;
+    private String zipCode;
 }
