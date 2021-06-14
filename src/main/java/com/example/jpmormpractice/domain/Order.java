@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
@@ -26,15 +27,19 @@ public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    List<OrderItem> orderItems = new ArrayList<>();
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
-    List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "item")
+    private List<Item> items = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime orderDate;
@@ -52,5 +57,10 @@ public class Order {
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
     }
 }

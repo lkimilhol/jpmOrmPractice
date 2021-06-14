@@ -14,20 +14,16 @@ import javax.persistence.ManyToOne;
 @Entity
 @Getter
 @Setter
-public class OrderItem {
+public class CategoryItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
-    private int orderPrice;
-
-    private int count;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private CategoryItem categoryItem;
 }
